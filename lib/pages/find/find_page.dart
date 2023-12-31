@@ -19,7 +19,10 @@ class _FindPageState extends State<FindPage> {
         height: 800,
         child: ListView(
           children: [
-            const FindItem(title: '朋友圈', imageName: 'images/pengyouquan.png'),
+            const FindItem(
+              title: '朋友圈',
+              imageName: 'images/pengyouquan.png',
+            ),
             const SizedBox(height: 10),
             const FindItem(title: '摇一摇', imageName: 'images/yaoyiyao.png'),
             Row(
