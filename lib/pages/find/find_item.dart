@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './child_pages/find_child_page.dart';
 
-class FindItem extends StatelessWidget {
+class FindItem extends StatefulWidget {
   final String title;
   final String? subTitle;
   final String imageName;
@@ -20,15 +20,37 @@ class FindItem extends StatelessWidget {
         assert(imageName != null, 'imageNamne 不能为空');
 
   @override
+  State<StatefulWidget> createState() => _FindItemState();
+}
+
+class _FindItemState extends State<FindItem> {
+  Color _activeColor = Colors.white;
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // 这里调用方法
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) => FindChildPage(title: title)));
+            builder: (BuildContext context) =>
+                FindChildPage(title: widget.title)));
+
+        setState(() {
+          _activeColor = Colors.white;
+        });
+      },
+      onTapDown: (TapDownDetails details) {
+        setState(() {
+          _activeColor = Colors.grey;
+        });
+      },
+      onTapCancel: () {
+        setState(() {
+          _activeColor = Colors.white;
+        });
       },
       child: Container(
-        color: Colors.white,
+        color: _activeColor,
         height: 45,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,13 +63,13 @@ class FindItem extends StatelessWidget {
                 children: [
                   // 图标
                   Image(
-                    image: AssetImage(imageName),
+                    image: AssetImage(widget.imageName),
                     width: 30,
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  Text(title)
+                  Text(widget.title)
                   // title
                 ],
               ),
@@ -58,10 +80,12 @@ class FindItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  subTitle != null ? Text(subTitle!) : const Text(''),
-                  subImageName != null
+                  widget.subTitle != null
+                      ? Text(widget.subTitle!)
+                      : const Text(''),
+                  widget.subImageName != null
                       ? Image(
-                          image: AssetImage(subImageName!),
+                          image: AssetImage(widget.subImageName!),
                           width: 18,
                         )
                       : Container(),
