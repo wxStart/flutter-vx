@@ -50,7 +50,7 @@ class _MyPageState extends State<MyPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 40),
+                      margin: const EdgeInsets.only(top: 40),
                       child: const Text(
                         '92岁老大爷',
                         style: TextStyle(
@@ -60,7 +60,7 @@ class _MyPageState extends State<MyPage> {
                       ),
                     ),
                     Container(
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         child: Row(
                           children: [
                             Container(
