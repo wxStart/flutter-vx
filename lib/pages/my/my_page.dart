@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vx/const.dart';
 import '../../conponents/CellItem.dart';
 
 class MyPage extends StatefulWidget {
@@ -98,7 +99,7 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color.fromRGBO(222, 222, 222, 1),
+        color: weChatThemeColor,
         child: Stack(
           children: [
             //列表

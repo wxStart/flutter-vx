@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vx/const.dart';
 import './find_item.dart';
 
 class FindPage extends StatefulWidget {
@@ -9,7 +10,7 @@ class FindPage extends StatefulWidget {
 }
 
 class _FindPageState extends State<FindPage> {
-  final Color _themColor = const Color.fromRGBO(222, 222, 222, 1);
+  final Color _themColor = weChatThemeColor;
 
   @override
   Widget build(BuildContext context) {
