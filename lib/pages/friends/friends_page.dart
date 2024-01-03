@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vx/common/iconfont.dart';
 import 'package:flutter_vx/const.dart';
 import 'package:flutter_vx/pages/friends/friend_cell.dart';
+import 'package:flutter_vx/pages/friends/index_bar.dart';
 import './friend_data.dart';
 
 class FriendsPage extends StatefulWidget {
@@ -33,6 +34,11 @@ class _FriendsPageState extends State<FriendsPage> {
         groupTitle: hideGroup ? null : item.indexLetter);
   }
 
+  String indexCallBack(String str) {
+    print('接收到了子组件的 $str');
+    return str;
+  }
+
   //
   @override
   void initState() {
@@ -49,33 +55,39 @@ class _FriendsPageState extends State<FriendsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: weChatThemeColor,
-      appBar: AppBar(
-        actions: [
-          Container(
-              margin: const EdgeInsets.only(right: 15),
-              child: const Icon(
-                IconFont.icon_sousuo1,
-                color: Color.fromRGBO(33, 33, 33, 0.65),
-                size: 24,
-              )),
-          Container(
-              margin: const EdgeInsets.only(right: 15),
-              child: const Icon(
-                IconFont.icon_tianjia,
-                color: Color.fromRGBO(33, 33, 33, 0.65),
-                size: 22,
-              )),
-        ],
         backgroundColor: weChatThemeColor,
-        centerTitle: true,
-        title: const Text('通讯录'),
-      ),
-      body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) =>
-            _itemBuilder(context, index),
-        itemCount: headData.length + _lists.length,
-      ),
-    );
+        appBar: AppBar(
+          actions: [
+            Container(
+                margin: const EdgeInsets.only(right: 15),
+                child: const Icon(
+                  IconFont.icon_sousuo1,
+                  color: Color.fromRGBO(33, 33, 33, 0.65),
+                  size: 24,
+                )),
+            Container(
+                margin: const EdgeInsets.only(right: 15),
+                child: const Icon(
+                  IconFont.icon_tianjia,
+                  color: Color.fromRGBO(33, 33, 33, 0.65),
+                  size: 22,
+                )),
+          ],
+          backgroundColor: weChatThemeColor,
+          centerTitle: true,
+          title: const Text('通讯录'),
+        ),
+        body: Stack(
+          children: [
+            Container(
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) =>
+                    _itemBuilder(context, index),
+                itemCount: headData.length + _lists.length,
+              ),
+            ),
+            IndexBar(indexCallBack: indexCallBack)
+          ],
+        ));
   }
 }

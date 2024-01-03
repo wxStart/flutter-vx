@@ -44,9 +44,9 @@ class _FriendCellState extends State<FriendCell> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(
-                      image: (widget.imageUrl != null
-                          ? NetworkImage(widget.imageUrl!)
-                          : AssetImage(widget.assetImageUrl!)) as ImageProvider,
+                      image: widget.imageUrl != null
+                          ? NetworkImage(widget.imageUrl!) as ImageProvider
+                          : AssetImage(widget.assetImageUrl!),
                     ),
                   )),
 
