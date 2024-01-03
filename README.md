@@ -23,3 +23,11 @@
 + [中文文档](https://flutterchina.club/)   
 + [Dart包](https://pub.dev/) 
 
+
+### 使用阿里字体库
+[教程参考](https://juejin.cn/post/7019129651054247972)
+[在线转换](https://xwrite.gitee.io/blog/)
+
+
+#### 更新后跑 
+`$ flutter pub run iconfont_css_to_class:main`
