@@ -27,11 +27,11 @@ class _FriendCellState extends State<FriendCell> {
           margin: const EdgeInsets.only(left: 8),
           alignment: Alignment.bottomLeft,
           color: weChatThemeColor,
-          height: widget.groupTitle != null ? 30 : 0,
+          height: widget.groupTitle != null ? friendCellSplitterHeight : 0,
           child: widget.groupTitle != null ? Text(widget.groupTitle!) : null,
         ),
         Container(
-          height: 52,
+          height: friendCellHeight,
           color: Colors.white,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +54,7 @@ class _FriendCellState extends State<FriendCell> {
               Expanded(
                   flex: 1,
                   child: Container(
-                      height: 52,
+                      height: friendCellHeight,
                       child: Column(
                         children: [
                           // 文字

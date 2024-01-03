@@ -16,12 +16,17 @@ class RootPage extends StatefulWidget {
 class _RootPage extends State<RootPage> {
   int _currentIndex = 3;
 
-  List<Widget> _pages = [ChatPage(), FriendsPage(), FindPage(), MyPage()];
+  final List _pages = [
+    (BuildContext context) => ChatPage(),
+    (BuildContext context) => FriendsPage(context: context),
+    (BuildContext context) => FindPage(),
+    (BuildContext context) => MyPage()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_currentIndex],
+      body: _pages[_currentIndex](context),
       bottomNavigationBar: BottomNavigationBar(
           selectedFontSize: 12.0,
           onTap: (index) {

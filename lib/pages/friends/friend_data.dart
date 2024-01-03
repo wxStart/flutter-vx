@@ -63,7 +63,7 @@ final List<Friend> _datas = [
 
 List<Friend> createData(int num) {
   for (int i = 0; i < num; i++) {
-    int index = i % 25;
+    int index = i % 26;
     _datas.add(Friend(
       imageUrl: "https://randomuser.me/api/portraits/women/$index.jpg",
       name: "$i _李磊",
@@ -73,4 +73,4 @@ List<Friend> createData(int num) {
   return _datas;
 }
 
-List<Friend> datas = createData(100);
+List<Friend> datas = createData(27);
