@@ -46,9 +46,11 @@ class _FriendsPageState extends State<FriendsPage> {
 
   void indexCallBack(String str) {
     // 获取˝ str 字母的高度
+    print("str $str");
     if (_groupOffestMap[str] != null) {
-      _scrollController.animateTo(_groupOffestMap[str],
-          duration: const Duration(microseconds: 200), curve: Curves.easeIn);
+      _scrollController.jumpTo(_groupOffestMap[str]); // 微信的效果  直接跳转
+      // _scrollController.animateTo(_groupOffestMap[str],
+      //     duration: const Duration(microseconds: 50), curve: Curves.easeIn);
     }
   }
 
