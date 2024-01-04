@@ -63,22 +63,56 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     super.initState();
     // 获取网络数据
-    geDatas().then((value) {
-      print("1 $value");
-    });
+    // geDatas().then((value) {
+    //   print("1 $value");
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        alignment: const Alignment(0, 0),
-        child: Text(
-          '微信页面',
-          style: TextStyle(
-            color: Colors.red[300],
-            fontSize: 24,
-          ),
+        child: FutureBuilder(
+          future: geDatas(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            // print("snapshot_ ${snapshot.data}");
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              // 网络请求中的时候
+              return Container(
+                child: const Text('loading... '),
+              );
+            }
+            // 加载到了数据
+            return ListView(
+              children: snapshot.data.map<Widget>((Chat item) {
+                return ListTile(
+                  title: Text(item.name),
+                  subtitle: Container(
+                    margin: const EdgeInsets.only(top: 8),
+                    height: 20,
+                    child: Text(
+                      item.message,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+
+                  leading: Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      image: DecorationImage(
+                        image: NetworkImage(item.imageUrl),
+                      ),
+                    ),
+                  ),
+                  // leading: CircleAvatar(
+                  //   backgroundImage: NetworkImage(item.imageUrl),
+                  // ),
+                );
+              }).toList(),
+            );
+          },
         ),
       ),
       appBar: AppBar(
