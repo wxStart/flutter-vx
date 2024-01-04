@@ -29,7 +29,8 @@ class ChatPage extends StatefulWidget {
   State<ChatPage> createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _ChatPageState extends State<ChatPage>
+    with AutomaticKeepAliveClientMixin<ChatPage> {
   bool _loading = false;
   bool _hasError = false;
   List<Chat> _datas = [];
@@ -61,6 +62,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
+    print('初始化了');
     // 获取网络数据
     geDatas()
         .then((List<Chat> datas) {
@@ -100,6 +102,7 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Container(
           child: _loading
@@ -190,4 +193,7 @@ class _ChatPageState extends State<ChatPage> {
       // backgroundColor: weChatThemeColor,
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

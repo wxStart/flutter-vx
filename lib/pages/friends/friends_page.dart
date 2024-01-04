@@ -57,6 +57,7 @@ class _FriendsPageState extends State<FriendsPage> {
   //
   @override
   void initState() {
+    print('通讯录初始化了');
     super.initState();
     _lists
       ..addAll(datas)
