@@ -100,98 +100,104 @@ class _ChatPageState extends State<ChatPage>
         });
   }
 
+  Widget _bodyItemBuilder(BuildContext context, int index) {
+    var item = _datas[index];
+    return ListTile(
+      title: Text(item.name),
+      subtitle: Container(
+        margin: const EdgeInsets.only(top: 8),
+        height: 20,
+        child: Text(
+          item.message,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      leading: Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          image: DecorationImage(
+            image: NetworkImage(item.imageUrl),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
       body: Container(
-          child: _loading
-              ? const Text('loading...')
-              : _hasError
-                  ? const Text('出错了')
-                  : _netWork
-                      ? const Text('网络不好')
-                      : _datas.isEmpty //_datas.length == 0;
-                          ? const Text('空页面站位')
-                          : ListView.builder(
-                              itemBuilder: (BuildContext context, int index) {
-                                var item = _datas[index];
-                                return ListTile(
-                                  title: Text(item.name),
-                                  subtitle: Container(
-                                    margin: const EdgeInsets.only(top: 8),
-                                    height: 20,
-                                    child: Text(
-                                      item.message,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  leading: Container(
-                                    width: 44,
-                                    height: 44,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      image: DecorationImage(
-                                        image: NetworkImage(item.imageUrl),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                              itemCount: _datas.length,
-                            )),
+        child: _loading
+            ? const Text('loading...')
+            : _hasError
+                ? const Text('出错了')
+                : _netWork
+                    ? const Text('网络不好')
+                    : _datas.isEmpty //_datas.length == 0;
+                        ? const Text('空页面站位')
+                        : ListView.builder(
+                            itemBuilder: _bodyItemBuilder,
+                            itemCount: _datas.length,
+                          ),
+      ),
       appBar: AppBar(
         backgroundColor: weChatThemeColor,
         centerTitle: true,
         title: const Text(
           '微信',
           style: TextStyle(
-            color: Colors.white,
             fontSize: 26.0,
             fontWeight: FontWeight.w800,
           ),
         ),
         actions: [
           PopupMenuButton(
-              color: Color.fromRGBO(0, 0, 0, 0.5),
-              offset: Offset(0, 40), //40这个值是我实验出来的实际上是要算的
-              child: const Icon(
-                IconFont.icon_tianjia,
-                color: Color.fromRGBO(33, 33, 33, 0.65),
-                size: 22,
-              ),
-              onSelected: (value) {},
-              itemBuilder: (BuildContext context) {
-                return <PopupMenuEntry<dynamic>>[
-                  PopupMenuItem(
-                      onTap: () {
-                        print('点击了');
-                      },
-                      child: const Text(
-                        '发起群聊',
-                        style: TextStyle(color: Colors.white),
-                      )),
-                  const PopupMenuItem(
-                      child: Text(
-                    '添加好友',
-                    style: TextStyle(color: Colors.white),
-                  )),
-                  const PopupMenuItem(
-                      child: Text(
-                    '扫一扫',
-                    style: TextStyle(color: Colors.white),
-                  )),
-                  const PopupMenuItem(
-                      child: Text(
-                    '收款码',
-                    style: TextStyle(color: Colors.white),
-                  )),
-                ];
-              })
+            color: const Color.fromRGBO(0, 0, 0, 0.5),
+            offset: const Offset(0, 40), //40这个值是我实验出来的实际上是要算的
+            // ignore: sort_child_properties_last
+            child: const Icon(
+              IconFont.icon_tianjia,
+              color: Color.fromRGBO(33, 33, 33, 0.65),
+              size: 22,
+            ),
+            onSelected: (value) {},
+            itemBuilder: _itemPopupBuilder,
+          )
         ],
       ),
       // backgroundColor: weChatThemeColor,
     );
+  }
+
+  List<PopupMenuEntry<dynamic>> _itemPopupBuilder(BuildContext context) {
+    return <PopupMenuEntry<dynamic>>[
+      PopupMenuItem(
+          onTap: () {
+            print('点击了');
+          },
+          child: const Text(
+            '发起群聊',
+            style: TextStyle(color: Colors.white),
+          )),
+      const PopupMenuItem(
+          child: Text(
+        '添加好友',
+        style: TextStyle(color: Colors.white),
+      )),
+      const PopupMenuItem(
+          child: Text(
+        '扫一扫',
+        style: TextStyle(color: Colors.white),
+      )),
+      const PopupMenuItem(
+          child: Text(
+        '收款码',
+        style: TextStyle(color: Colors.white),
+      )),
+    ];
   }
 
   @override

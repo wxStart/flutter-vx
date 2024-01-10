@@ -17,15 +17,15 @@ class HttpManager {
     return _dioInstance!;
   }
 
-  static Future get(String url, {dynamic data}) {
+  static Future<Response> get(String url, {dynamic data}) {
     return _sendRequest(HttpMethod.GET, url, data: data);
   }
 
-  static Future post(String url, {dynamic data}) {
+  static Future<Response> post(String url, {dynamic data}) {
     return _sendRequest(HttpMethod.POST, url, data: data);
   }
 
-  static Future _sendRequest(
+  static Future<Response> _sendRequest(
     HttpMethod method,
     String url, {
     dynamic data,
