@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vx/common/iconfont.dart';
 import 'package:flutter_vx/const.dart';
 import 'package:flutter_vx/pages/friends/friend_data.dart';
+import 'package:flutter_vx/pages/search/search_page.dart';
 import 'package:flutter_vx/tools/http_manager.dart';
 import 'package:http/http.dart' as http;
 
@@ -154,6 +155,21 @@ class _ChatPageState extends State<ChatPage>
           ),
         ),
         actions: [
+          GestureDetector(
+            onTap: () {
+              print('点击了，要去搜索页面');
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => const SearchPage()));
+            },
+            child: Container(
+              margin: const EdgeInsets.only(right: 15),
+              child: const Icon(
+                IconFont.icon_sousuo1,
+                color: Color.fromRGBO(33, 33, 33, 0.65),
+                size: 22,
+              ),
+            ),
+          ),
           PopupMenuButton(
             color: const Color.fromRGBO(0, 0, 0, 0.5),
             offset: const Offset(0, 40), //40这个值是我实验出来的实际上是要算的

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 class IconFont{
 	static const String _family = 'iconfont';
 	IconFont._();
+	static const IconData icon_quxiao = IconData(0xe616, fontFamily: _family);
 	static const IconData icon_angle_down = IconData(0xe84c, fontFamily: _family);
 	static const IconData icon_angle_up = IconData(0xe84d, fontFamily: _family);
 	static const IconData icon_angle_right = IconData(0xe84e, fontFamily: _family);
