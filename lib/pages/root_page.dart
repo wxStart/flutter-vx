@@ -14,7 +14,7 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPage extends State<RootPage> {
-  int _currentIndex = 3;
+  int _currentIndex = 0;
 
   // 作为页面缓存
   List<Widget> _cache = [];

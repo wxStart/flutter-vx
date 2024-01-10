@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_vx/common/iconfont.dart';
 import 'package:flutter_vx/const.dart';
 import 'package:flutter_vx/pages/friends/friend_data.dart';
+import 'package:flutter_vx/tools/http_manager.dart';
 import 'package:http/http.dart' as http;
 
 class Chat {
@@ -45,12 +45,12 @@ class _ChatPageState extends State<ChatPage>
       _hasError = false;
       _netWork = false;
     });
-    var url =
-        Uri.parse('http://rap2api.taobao.org/app/mock/316903/api/chat/list');
-    var response = await http.get(url);
+
+    var response = await HttpManager.get(
+        'http://rap2api.taobao.org/app/mock/316903/api/chat/list');
 
     if (response.statusCode == 200) {
-      final res = json.decode(response.body);
+      final res = response.data;
       List<Chat> lists =
           res['lists'].map<Chat>((el) => Chat.fromMap(el)).toList();
       return lists;
