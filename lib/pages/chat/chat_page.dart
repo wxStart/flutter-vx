@@ -159,7 +159,8 @@ class _ChatPageState extends State<ChatPage>
             onTap: () {
               print('点击了，要去搜索页面');
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const SearchPage()));
+                  builder: (BuildContext context) =>
+                      SearchPage(datas: _datas)));
             },
             child: Container(
               margin: const EdgeInsets.only(right: 15),
